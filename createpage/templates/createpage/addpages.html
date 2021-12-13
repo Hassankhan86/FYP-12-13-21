@@ -1,0 +1,71 @@
+{% extends 'basetemplate.html' %}
+{% load static %}
+
+{%block content  %}
+    <div class="container">
+        <div class="d-flex bd-highlight mb-3">
+            <div class="mr-auto p-2 bd-highlight" style="color: #10717F;font-weight: bolder; font-size:20px"><h1>My Resume</h1></div>
+            <div class="p-2 bd-highlight"><a  href="{% url 'dashboard:selectcv' %}"  class="btn" style="color: #FFFFFF;background: #207B88 0% 0% no-repeat padding-box;border-radius: 45px;width: 157px;">Create New    <i class="fas fa-arrow-right"></i></a></div>
+        </div>
+    </div>
+    <div class="container mt-3" style="padding-left: 0px; padding-right: 0px;">
+
+        {#    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" xmlns="http://www.w3.org/1999/html">#}
+        <div class="row">
+{#            <div class="col-lg-2">#}
+{#                <div class="card" style="width: 10rem; border-color: white">#}
+{#                    <a href="{% url 'dashboard:selectcv' %}">  <img  class="card-img-top" src="{% static 'newplus.jpeg' %}" alt="Card image cap">#}
+{#                    </a> </div>#}
+{#            </div>#}
+
+            {% for cv in cv %}
+
+                <div class="col-lg-2" >
+                    <div class="card " style="width: 10rem;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+;">
+
+                        <a  href="{% url 'dashboard:generate' cv.id %}" ><img style="height: 158px; width: 158px" class="card-img-top" src="{% static 'bluecv2.jpg' %}" alt="Card image cap"></a>
+
+                        <div class="card-body " style="text-align: center;">
+                            {% for title in cv.title.all %}
+                                <a style=" color: black; " href="{% url 'dashboard:generate' cv.id %}" > {% if title.resumetitle != "" %} <h7 class="card-title">{{ title.resumetitle}}</h7>{% else %}<h7 class="card-title">Untitlted</h7>{% endif %}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+
+        </div>
+        <br>
+
+        <div class="row">
+
+            {% for cv2 in cv2 %}
+
+                <div class="col-lg-2" >
+                    <div class="card " style="width: 10rem;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+;">
+
+                        <a  href="{% url 'dashboard:generateblackcv' cv2.id %}" ><img style="height: 158px; width: 158px" class="card-img-top" src="{% static 'Capture.jpg' %}" alt="Card image cap"></a>
+
+                        <div class="card-body " style="text-align: center;">
+                            {% for title in cv2.titlecv2.all %}
+                                <a style=" color: black; " href="{% url 'dashboard:generateblackcv' cv2.id %}" > {% if title.titcv2 != "" %}  <h7 class="card-title">{{ title.titcv2}}</h7>{% else %}<h7 class="card-title">Untitlted</h7> {% endif %}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+
+
+
+        </div>
+
+    </div>
+    <div style="margin-top: 20px"><span></span></div>
+
+    {#    </main>#}
+
+{% endblock %}
