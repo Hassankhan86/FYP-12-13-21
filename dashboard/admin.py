@@ -6,13 +6,19 @@ from django.contrib import admin
 from dashboard.models import Profile, ProfileSkills, ProfileEducation, ProfileExperience, Profilepic, ProfileProession, \
     ProfileCertificate, ProfessionalEducation, Profileinfo, Recommendations, CV, checks, CV2, ProfileTitlecv2,ProfileAwardscv2,ProfileProfessioncv2,ProfileCertificatecv2,ProfileReferencescv2,ProfileIntroductioncv2,ProfileAreaofexpertisecv2,ProfileBooksAuthoredcv2
 
-# class ProfileAdmin(admin.ModelAdmin):
-    # list_display = ('name','fname','age','gender','email','contactno1')
-    # list_filter = ('name',)
-    # search_fields = ('name','fname','age','gender','email','contactno1')
+admin.site.site_header = 'CV Builder'
+admin.site.site_title = 'CV Builder'
+
+class ProfileAdmin(admin.ModelAdmin):
+    search_fields = ('name',)
+
+    list_display_links =  ('name','fname','age','gender','email','contactno1')
+    list_display = ('name','fname','age','gender','email','contactno1')
+    list_filter = ('name','email','gender')
 
 
-admin.site.register(Profile)
+
+admin.site.register(Profile,ProfileAdmin)
 # admin.site.register(ProfileSkills)
 # admin.site.register(ProfileExperience)
 # admin.site.register(ProfileEducation)
@@ -23,10 +29,10 @@ admin.site.register(Profile)
 # admin.site.register(ProfessionalEducation)
 # admin.site.register(Profileinfo)
 # admin.site.register(Recommendations)
-admin.site.register(CV)
+# admin.site.register(CV)
 # admin.site.register(checks)
 
-admin.site.register(CV2)
+# admin.site.register(CV2)
 # admin.site.register(ProfileAreaofexpertisecv2)
 # admin.site.register(ProfileCertificatecv2)
 # admin.site.register(ProfileBooksAuthoredcv2)
